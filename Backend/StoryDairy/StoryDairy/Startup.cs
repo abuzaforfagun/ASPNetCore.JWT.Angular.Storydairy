@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using StoryDairy.Core.Presistance;
 using StoryDairy.Core.Ripository;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace StoryDairy
 {
@@ -33,6 +35,13 @@ namespace StoryDairy
                 );
             services.AddScoped<IStoryRepository, StoryRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new Info { Title = "Config API", Version = "v1" });
+                
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,7 +56,24 @@ namespace StoryDairy
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("../swagger/v1/swagger.json", "Story Dairy API V1");
+            });
+            app.UseDefaultFiles(new DefaultFilesOptions
+            {
+                DefaultFileNames = new
+                    List<string> { "swagger/index.html" }
+            });
             app.UseMvc();
+
+            app.Run(context =>
+            {
+                context.Response.Redirect("swagger/");
+                return Task.CompletedTask;
+            });
+
         }
     }
 }
