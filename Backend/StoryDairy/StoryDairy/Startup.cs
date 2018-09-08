@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using StoryDairy.Core.Presistance;
 using StoryDairy.Core.Ripository;
 using Swashbuckle.AspNetCore.Swagger;
+using AutoMapper;
 
 namespace StoryDairy
 {
@@ -35,7 +36,7 @@ namespace StoryDairy
                 );
             services.AddScoped<IStoryRepository, StoryRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            
+            services.AddAutoMapper();
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new Info { Title = "Config API", Version = "v1" });
