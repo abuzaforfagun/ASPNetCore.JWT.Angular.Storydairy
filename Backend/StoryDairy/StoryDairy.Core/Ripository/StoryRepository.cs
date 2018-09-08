@@ -17,6 +17,10 @@ namespace StoryDairy.Core.Ripository
 
         public void Add(Story story)
         {
+            if (story.DateTime == default(DateTime))
+            {
+                story.DateTime = DateTime.Now;
+            }
             context.Add(story);
         }
     }
