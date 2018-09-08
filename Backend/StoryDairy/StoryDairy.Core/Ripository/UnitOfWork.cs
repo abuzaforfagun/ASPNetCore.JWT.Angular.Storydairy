@@ -5,7 +5,7 @@ using StoryDairy.Core.Presistance;
 
 namespace StoryDairy.Core.Ripository
 {
-    public class UnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         private readonly StoryDbContext context;
 

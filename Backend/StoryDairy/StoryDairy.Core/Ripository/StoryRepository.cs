@@ -6,7 +6,7 @@ using StoryDairy.Core.Presistance;
 
 namespace StoryDairy.Core.Ripository
 {
-    public class StoryRepository
+    public class StoryRepository : IStoryRepository
     {
         private readonly StoryDbContext context;
 
