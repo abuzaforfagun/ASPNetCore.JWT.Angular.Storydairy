@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using StoryDairy.Core.Presistance;
+using StoryDairy.Core.Ripository;
 
 namespace StoryDairy
 {
@@ -29,6 +30,8 @@ namespace StoryDairy
                     options => options
                     .UseSqlServer(Configuration.GetConnectionString("StoryDb"))
                 );
+            services.AddScoped<IStoryRepository, StoryRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
