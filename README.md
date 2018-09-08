@@ -1,0 +1,2 @@
+# ASPNetCore.Angular.StoryDairy
+
