@@ -35,5 +35,18 @@ namespace StoryDairy
             unitOfWork.Done();
             return Ok();
         }
+
+        [HttpGet]
+        public IActionResult Get()
+        {
+            var items = unitOfWork.StoryRepository.Get();
+            if (items.Count() == 0)
+            {
+                return NoContent();
+            }
+            return Ok(items);
+        }
+        
+
     }
 }

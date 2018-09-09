@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using StoryDairy.Core.Model;
 using StoryDairy.Core.Presistance;
@@ -22,6 +23,11 @@ namespace StoryDairy.Core.Ripository
                 story.DateTime = DateTime.Now;
             }
             context.Add(story);
+        }
+
+        public IEnumerable<Story> Get()
+        {
+            return context.Stories.ToList();
         }
     }
 }
