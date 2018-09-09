@@ -60,15 +60,12 @@ namespace StoryDairy
                 return BadRequest(ModelState);
             }
             var itemFromDb = unitOfWork.StoryRepository.Get(id);
-
-            mapper.Map<StoryResource, Story>(story, itemFromDb);
-
             if (itemFromDb == null)
             {
                 return NotFound();
             }
+            mapper.Map<StoryResource, Story>(story, itemFromDb);
             unitOfWork.Done();
-
             return Ok(itemFromDb);
         }
 
