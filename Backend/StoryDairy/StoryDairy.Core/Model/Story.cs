@@ -9,7 +9,18 @@ namespace StoryDairy.Core.Model
         public int Id { get; set; }
         public string Title { get; set; }
         public string Body { get; set; }
-        public DateTime DateTime { get; set; }
+        private DateTime _date;
+        public DateTime DateTime
+        {
+            get { return _date; }
+            set
+            {
+                if (value != new DateTime())
+                {
+                    _date = value;
+                }
+            }
+        }
 
         public override string ToString()
         {
