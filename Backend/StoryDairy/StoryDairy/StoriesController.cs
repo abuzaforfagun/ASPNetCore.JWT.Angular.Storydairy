@@ -57,7 +57,7 @@ namespace StoryDairy
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return BadRequest(ModelState);
             }
             var itemFromDb = unitOfWork.StoryRepository.Get(id);
 
