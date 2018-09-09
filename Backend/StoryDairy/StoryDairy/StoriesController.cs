@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch.Adapters;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
@@ -28,6 +29,7 @@ namespace StoryDairy
             this.mapper = mapper;
         }
         [HttpPost]
+        [Authorize]
         public IActionResult Post([FromBody] StoryResource story)
         {
             if (!ModelState.IsValid)
@@ -54,6 +56,7 @@ namespace StoryDairy
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public IActionResult Put(int id, [FromBody] StoryResource story)
         {
             if (!ModelState.IsValid)
@@ -71,6 +74,7 @@ namespace StoryDairy
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public IActionResult Delete(int id)
         {
             if (!ModelState.IsValid)
