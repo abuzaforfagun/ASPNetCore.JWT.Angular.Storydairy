@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch.Adapters;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using StoryDairy.Core.Model;
 using StoryDairy.Core.Resources;
 using StoryDairy.Core.Ripository;
@@ -44,9 +47,39 @@ namespace StoryDairy
             {
                 return NoContent();
             }
+
+            ReturnFormattedData<Story>(items);
+            return ReturnFormattedData<Story>(items);
+        }
+
+        private IActionResult ReturnFormattedData<T>(IEnumerable<T> items)
+        {
+            if (Request.Headers["Content-Type"].Contains("text/plain"))
+            {
+                StringBuilder respone = new StringBuilder();
+
+                foreach (var i in items)
+                {
+                    respone.Append(i.ToString());
+                };
+                return Ok(respone.ToString());
+            }
             return Ok(items);
         }
-        
 
+
+        //[HttpGet]
+        //[Produces("text/plain")]
+        //public IActionResult sample()
+        //{
+        //    var headers = Request.Headers.Keys.ToList();
+        //    if (Request.Headers["Content-Type"].Contains("text/plain"))
+        //    {
+        //        return Content("hello");
+        //    }
+        //    var s = new Story() { Body = "body", Id = 1 };
+
+        //    return Ok(s);
+        //}
     }
 }
