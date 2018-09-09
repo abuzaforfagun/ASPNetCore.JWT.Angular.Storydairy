@@ -4,7 +4,7 @@ using System.Text;
 
 namespace StoryDairy.Core.Resources
 {
-    public class StoryAddResource
+    public class StoryResource
     {
         public string Title { get; set; }
         public string Body { get; set; }

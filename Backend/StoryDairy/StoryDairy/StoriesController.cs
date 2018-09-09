@@ -24,7 +24,7 @@ namespace StoryDairy
             this.mapper = mapper;
         }
         [HttpPost]
-        public IActionResult Post([FromBody] StoryAddResource story)
+        public IActionResult Post([FromBody] StoryResource story)
         {
             if (!ModelState.IsValid)
             {
