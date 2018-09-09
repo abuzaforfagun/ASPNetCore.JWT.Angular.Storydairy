@@ -12,7 +12,9 @@ namespace StoryDairy
     {
         public MappingProfile()
         {
-            CreateMap<Story, StoryResource>().ReverseMap();
+            CreateMap<Story, StoryResource>()
+                .ReverseMap()
+                .ForMember(s => s.Id, cfg => cfg.Ignore());
         }
     }
 }

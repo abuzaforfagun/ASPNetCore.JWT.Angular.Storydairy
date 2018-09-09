@@ -52,6 +52,26 @@ namespace StoryDairy
             return ReturnFormattedData<Story>(items);
         }
 
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, [FromBody] StoryResource story)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            var itemFromDb = unitOfWork.StoryRepository.Get(id);
+
+            mapper.Map<StoryResource, Story>(story, itemFromDb);
+
+            if (itemFromDb == null)
+            {
+                return NotFound();
+            }
+            unitOfWork.Done();
+
+            return Ok(itemFromDb);
+        }
+
         private IActionResult ReturnFormattedData<T>(IEnumerable<T> items)
         {
             if (Request.Headers["Content-Type"].Contains("text/plain"))

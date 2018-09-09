@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using StoryDairy.Core.Model;
 using StoryDairy.Core.Presistance;
+using StoryDairy.Core.Resources;
 
 namespace StoryDairy.Core.Ripository
 {
@@ -28,6 +29,12 @@ namespace StoryDairy.Core.Ripository
         public IEnumerable<Story> Get()
         {
             return context.Stories.ToList();
+        }
+
+        public Story Get(int id)
+        {
+            var itemFromDb = context.Stories.SingleOrDefault(s => s.Id == id);
+            return itemFromDb;
         }
     }
 }
