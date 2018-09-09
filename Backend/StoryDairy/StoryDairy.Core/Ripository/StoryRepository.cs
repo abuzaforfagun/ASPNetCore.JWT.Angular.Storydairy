@@ -36,5 +36,10 @@ namespace StoryDairy.Core.Ripository
             var itemFromDb = context.Stories.SingleOrDefault(s => s.Id == id);
             return itemFromDb;
         }
+
+        public void Delete(Story story)
+        {
+            context.Stories.Remove(story);
+        }
     }
 }

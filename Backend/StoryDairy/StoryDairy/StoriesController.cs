@@ -7,6 +7,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.JsonPatch.Adapters;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using StoryDairy.Core.Model;
 using StoryDairy.Core.Resources;
 using StoryDairy.Core.Ripository;
@@ -67,6 +68,23 @@ namespace StoryDairy
             mapper.Map<StoryResource, Story>(story, itemFromDb);
             unitOfWork.Done();
             return Ok(itemFromDb);
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var item = unitOfWork.StoryRepository.Get(id);
+            if (item == null)
+            {
+                return NotFound();
+            }
+            unitOfWork.StoryRepository.Delete(item);
+            unitOfWork.Done();
+            return Ok();
         }
 
         private IActionResult ReturnFormattedData<T>(IEnumerable<T> items)
