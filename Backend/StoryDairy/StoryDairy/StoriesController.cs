@@ -66,20 +66,5 @@ namespace StoryDairy
             }
             return Ok(items);
         }
-
-
-        //[HttpGet]
-        //[Produces("text/plain")]
-        //public IActionResult sample()
-        //{
-        //    var headers = Request.Headers.Keys.ToList();
-        //    if (Request.Headers["Content-Type"].Contains("text/plain"))
-        //    {
-        //        return Content("hello");
-        //    }
-        //    var s = new Story() { Body = "body", Id = 1 };
-
-        //    return Ok(s);
-        //}
     }
 }
