@@ -28,7 +28,7 @@ namespace StoryDairy
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return BadRequest(ModelState);
             }
             var _story = mapper.Map<Story>(story);
             unitOfWork.StoryRepository.Add(_story);
