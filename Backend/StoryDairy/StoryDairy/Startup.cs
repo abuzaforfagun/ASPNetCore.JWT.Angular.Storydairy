@@ -40,6 +40,7 @@ namespace StoryDairy
                     .UseSqlServer(Configuration.GetConnectionString("StoryDb"))
                 );
             services.AddScoped<IStoryRepository, StoryRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddAutoMapper();
             services.AddSwaggerGen(options =>
