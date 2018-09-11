@@ -33,7 +33,7 @@ namespace StoryDairy
             var _story = mapper.Map<Story>(story);
             unitOfWork.StoryRepository.Add(_story);
             unitOfWork.Done();
-            return Ok();
+            return Ok(_story);
         }
     }
 }
