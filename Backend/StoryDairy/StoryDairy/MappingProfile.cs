@@ -16,6 +16,8 @@ namespace StoryDairy
                 .ReverseMap()
                 .ForMember(s => s.Id, cfg => cfg.Ignore());
             CreateMap<User, UserResource>().ReverseMap();
+
+            CreateMap<List<Story>, List<StoryResourceForUpdate>>().ReverseMap();
         }
     }
 }
