@@ -31,7 +31,7 @@ namespace StoryDairy
         {
             if (_unitOfWork.UserRepository.Get(user.UserId, user.Password) != null)
             {
-                return Ok(new { Token = GenerateToekn() });
+                return Ok(new { Token = GenerateToekn(user) });
             }
             else
             {
@@ -39,15 +39,17 @@ namespace StoryDairy
             }
         }
 
-        private string GenerateToekn()
+        private string GenerateToekn(LoginResource user)
         {
             var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
             var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
 
+            var claims = new List<Claim>();
+            claims.Add(new Claim(ClaimTypes.Name, user.UserId));
             var tokeOptions = new JwtSecurityToken(
                 issuer: _configuration.GetValue<string>("Url"),
                 audience: _configuration.GetValue<string>("Url"),
-                claims: new List<Claim>(),
+                claims: claims,
                 expires: DateTime.Now.AddDays(30),
                 signingCredentials: signinCredentials
             );
