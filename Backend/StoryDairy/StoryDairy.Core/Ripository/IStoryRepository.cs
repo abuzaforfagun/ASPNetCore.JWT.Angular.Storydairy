@@ -8,5 +8,6 @@ namespace StoryDairy.Core.Ripository
         void Add(Story story);
         IEnumerable<Story> Get();
         void Delete(Story story);
+        Story Get(int id);
     }
 }

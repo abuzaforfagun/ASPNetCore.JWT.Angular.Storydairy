@@ -13,6 +13,9 @@ using StoryDairy.Core.Presistance;
 using StoryDairy.Core.Ripository;
 using Swashbuckle.AspNetCore.Swagger;
 using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace StoryDairy
 {
@@ -29,20 +32,36 @@ namespace StoryDairy
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            var url = Configuration.GetValue<string>("Url");
+
             services.AddMvc();
             services.AddDbContext<StoryDbContext>(
                     options => options
                     .UseSqlServer(Configuration.GetConnectionString("StoryDb"))
                 );
             services.AddScoped<IStoryRepository, StoryRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddAutoMapper();
             services.AddSwaggerGen(options =>
             {
-                options.SwaggerDoc("v1", new Info { Title = "Config API", Version = "v1" });
-                
+                options.SwaggerDoc("v1", new Info {Title = "Config API", Version = "v1"});
             });
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
 
+                        ValidIssuer = url,
+                        ValidAudience = url,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"))
+                    };
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -67,6 +86,7 @@ namespace StoryDairy
                 DefaultFileNames = new
                     List<string> { "swagger/index.html" }
             });
+            app.UseAuthentication();
             app.UseMvc();
 
             app.Run(context =>

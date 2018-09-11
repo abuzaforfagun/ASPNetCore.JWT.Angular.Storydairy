@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch.Adapters;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using StoryDairy.Core;
 using StoryDairy.Core.Model;
 using StoryDairy.Core.Resources;
 using StoryDairy.Core.Ripository;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace StoryDairy
 {
@@ -28,49 +28,53 @@ namespace StoryDairy
             this.mapper = mapper;
         }
         [HttpPost]
-        public IActionResult Post([FromBody] StoryResource story)
+        [Authorize]
+        public IActionResult Post([FromBody] StoryResourceForUpdate story)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
             var _story = mapper.Map<Story>(story);
+            _story.UserId = User.Identity.Name;
             unitOfWork.StoryRepository.Add(_story);
             unitOfWork.Done();
-            return Ok(_story);
+            var result = mapper.Map<StoryResource>(_story);
+            return Ok(result);
         }
 
         [HttpGet]
         public IActionResult Get()
         {
-            var items = unitOfWork.StoryRepository.Get();
+            var items = unitOfWork.StoryRepository.Get().ToList();
             if (items.Count() == 0)
             {
                 return NoContent();
             }
 
-            ReturnFormattedData<Story>(items);
-            return ReturnFormattedData<Story>(items);
+            var _items = mapper.Map<IEnumerable<StoryResource>>(items);
+
+            return ReturnFormattedData<StoryResource>(_items);
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] StoryResource story)
+        [Authorize]
+        public IActionResult Put(int id, [FromBody] StoryResourceForUpdate story)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
             var itemFromDb = unitOfWork.StoryRepository.Get(id);
-            if (itemFromDb == null)
-            {
-                return NotFound();
-            }
-            mapper.Map<StoryResource, Story>(story, itemFromDb);
+            if (CheckModel(itemFromDb, out var actionResult)) return actionResult;
+            
+            mapper.Map<StoryResourceForUpdate, Story>(story, itemFromDb);
             unitOfWork.Done();
             return Ok(itemFromDb);
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public IActionResult Delete(int id)
         {
             if (!ModelState.IsValid)
@@ -78,13 +82,32 @@ namespace StoryDairy
                 return BadRequest(ModelState);
             }
             var item = unitOfWork.StoryRepository.Get(id);
-            if (item == null)
-            {
-                return NotFound();
-            }
+            if (CheckModel(item, out var actionResult)) return actionResult;
             unitOfWork.StoryRepository.Delete(item);
             unitOfWork.Done();
             return Ok();
+        }
+
+        private bool CheckModel(Story item, out IActionResult actionResult)
+        {
+            if (item.IsNull())
+            {
+                {
+                    actionResult = NotFound();
+                    return true;
+                }
+            }
+
+            if (!isAuthorized(item.UserId))
+            {
+                {
+                    actionResult = Unauthorized();
+                    return true;
+                }
+            }
+
+            actionResult = null;
+            return false;
         }
 
         private IActionResult ReturnFormattedData<T>(IEnumerable<T> items)
@@ -101,5 +124,17 @@ namespace StoryDairy
             }
             return Ok(items);
         }
+
+
+        private bool isAuthorized(string userId)
+        {
+            if (userId != User.Identity.Name)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
     }
 }

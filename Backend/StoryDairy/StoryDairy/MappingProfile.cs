@@ -15,6 +15,13 @@ namespace StoryDairy
             CreateMap<Story, StoryResource>()
                 .ReverseMap()
                 .ForMember(s => s.Id, cfg => cfg.Ignore());
+            CreateMap<Story, StoryResourceForUpdate>()
+                            .ReverseMap()
+                            .ForMember(s => s.Id, cfg => cfg.Ignore());
+
+            CreateMap<User, UserResource>().ReverseMap();
+
+            CreateMap<List<Story>, List<StoryResourceForUpdate>>().ReverseMap();
         }
     }
 }
