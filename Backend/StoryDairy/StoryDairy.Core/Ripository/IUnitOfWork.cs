@@ -2,8 +2,8 @@
 {
     public interface IUnitOfWork
     {
-        StoryRepository StoryRepository { get; set; }
-        UserRepository UserRepository { get; set; }
+        IStoryRepository StoryRepository { get; set; }
+        IUserRepository UserRepository { get; set; }
 
         void Done();
     }

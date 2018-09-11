@@ -9,8 +9,8 @@ namespace StoryDairy.Core.Ripository
     {
         private readonly StoryDbContext context;
 
-        public StoryRepository StoryRepository { get; set; }
-        public UserRepository UserRepository { get; set; }
+        public IStoryRepository StoryRepository { get; set; }
+        public IUserRepository UserRepository { get; set; }
 
         public UnitOfWork(StoryDbContext context)
         {

@@ -14,8 +14,6 @@ using StoryDairy.Core.Model;
 using StoryDairy.Core.Resources;
 using StoryDairy.Core.Ripository;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace StoryDairy
 {
     [Route("api/[controller]")]
@@ -55,7 +53,6 @@ namespace StoryDairy
             }
 
             var _items = mapper.Map<IEnumerable<StoryResource>>(items);
-            //IEnumerable<StoryResourceForUpdate> ienumerableDest = Mapper.Map<List<Story>, IEnumerable<StoryResourceForUpdate>>(items);
 
             return ReturnFormattedData<StoryResource>(_items);
         }
