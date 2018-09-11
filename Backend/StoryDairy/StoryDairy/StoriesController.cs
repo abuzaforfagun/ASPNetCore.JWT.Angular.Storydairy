@@ -41,7 +41,7 @@ namespace StoryDairy
             _story.UserId = User.Identity.Name;
             unitOfWork.StoryRepository.Add(_story);
             unitOfWork.Done();
-            return Ok();
+            return Ok(_story);
         }
 
         [HttpGet]
