@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class LoginComponent implements OnInit {
   userId: string;
   password: string;
-  constructor() { }
+  constructor(private rotuer: Router) { }
 
   ngOnInit() {
   }
@@ -19,6 +20,6 @@ export class LoginComponent implements OnInit {
   }
 
   goRegisterComponent() {
-    
+    this.rotuer.navigate(['register']);
   }
 }
