@@ -10,6 +10,7 @@ import { RegisterComponent } from './register/register.component';
 import { NewstoryComponent } from './newstory/newstory.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDatepicker, MatDatepickerModule, MatInputModule, MatNativeDateModule } from '@angular/material';
+import { StoryComponent } from './story/story.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { MatDatepicker, MatDatepickerModule, MatInputModule, MatNativeDateModule
     PageNotFoundComponent,
     RegisterComponent,
     NewstoryComponent,
+    StoryComponent,
   ],
   imports: [
     BrowserModule,
