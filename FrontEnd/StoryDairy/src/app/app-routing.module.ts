@@ -1,3 +1,4 @@
+import { StoryComponent } from './story/story.component';
 import { NewstoryComponent } from './newstory/newstory.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -7,7 +8,9 @@ import { RegisterComponent } from './register/register.component';
 
 
 const appRoutes: Routes = [
-    { path: 'story/new', component: NewstoryComponent },
+    { path: 'story', component: StoryComponent },
+    { path: 'story/form', component: NewstoryComponent },
+    { path: 'story/form/:id', component: NewstoryComponent },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: '', redirectTo: '/login', pathMatch: 'full' },
