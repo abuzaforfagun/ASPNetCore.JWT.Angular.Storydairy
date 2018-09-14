@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Story } from '../models/story';
+import { StoryService } from '../services/story.service';
 
 @Component({
   selector: 'app-newstory',
@@ -6,17 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./newstory.component.css']
 })
 export class NewstoryComponent implements OnInit {
-
-  title: string;
-  body: string;
-  datetime: string;
-
-  constructor() { }
+  story: Story;
+  constructor(private storyService: StoryService) {
+    this.story = new Story();
+   }
 
   ngOnInit() {
   }
 
   submitStory() {
-    console.log();
+    this.storyService.add(this.story);
   }
 }

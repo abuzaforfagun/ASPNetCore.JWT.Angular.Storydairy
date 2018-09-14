@@ -3,5 +3,5 @@ export class Story {
     title: string;
     author: string;
     description: string;
-    datetime: Date;
+    dateTime: Date;
 }
