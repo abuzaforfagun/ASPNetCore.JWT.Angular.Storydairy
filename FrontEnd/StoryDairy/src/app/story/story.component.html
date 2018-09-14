@@ -1,8 +1,8 @@
 <h1>Stories Listing</h1>
-<div class="article-container">
-  <h3 class="title">Title</h3>
-  <p>By <span class="title">Author</span> on <span>05 July 2018</span></p>
-  <p class="description">Description</p>
+<div class="article-container" *ngFor="let item of storyService.stories">
+  <h3 class="title">{{item.title}}</h3>
+  <p>By <span class="title">{{item.author}}</span> on <span>{{item.datetime}}</span></p>
+  <p class="description">{{item.description}}</p>
   
   <div class="buttons">
     <button class="btn" (click)="editArticle()">Edit</button>

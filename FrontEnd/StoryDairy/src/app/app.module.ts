@@ -11,6 +11,7 @@ import { NewstoryComponent } from './newstory/newstory.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDatepicker, MatDatepickerModule, MatInputModule, MatNativeDateModule } from '@angular/material';
 import { StoryComponent } from './story/story.component';
+import { StoryService } from './services/story.service';
 
 
 @NgModule({
@@ -31,7 +32,7 @@ import { StoryComponent } from './story/story.component';
     MatNativeDateModule,
     MatInputModule
   ],
-  providers: [],
+  providers: [StoryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
