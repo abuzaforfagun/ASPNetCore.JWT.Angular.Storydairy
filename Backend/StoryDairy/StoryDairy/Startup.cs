@@ -33,7 +33,7 @@ namespace StoryDairy
         public void ConfigureServices(IServiceCollection services)
         {
             var url = Configuration.GetValue<string>("Url");
-
+            services.AddCors();
             services.AddMvc();
             services.AddDbContext<StoryDbContext>(
                     options => options
