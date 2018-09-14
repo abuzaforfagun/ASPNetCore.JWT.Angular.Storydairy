@@ -19,7 +19,11 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.authService.login(this.user);
+    this.authService.login(this.user).then((data) => {
+      if (data) {
+        this.rotuer.navigate(['stories']);
+      }
+    })
   }
 
   goRegisterComponent() {

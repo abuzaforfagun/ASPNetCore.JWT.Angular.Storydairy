@@ -8,9 +8,12 @@ import { User } from '../models/user';
 export class AuthService {
   token: string;
   constructor(private httpService: HttpService) { }
-  login(user: User) {
-    this.httpService.post('https://localhost:44399/api/Auth/login', user).subscribe(data => {
-      localStorage.setItem('token', data.token);
+  login(user: User): Promise<any> {
+    return new Promise((resolve) => {
+      this.httpService.post('https://localhost:44399/api/Auth/login', user).subscribe(data => {
+        localStorage.setItem('token', data.token);
+        resolve(true);
+      });
     });
   }
 }
