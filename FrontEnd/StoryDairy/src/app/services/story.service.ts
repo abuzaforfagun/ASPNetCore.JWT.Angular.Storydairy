@@ -8,9 +8,15 @@ import { Injectable } from '@angular/core';
 export class StoryService {
   stories: any = [];
   constructor(private httpService: HttpService) {
-    // this.dummyStory();
     this.httpService.get('https://localhost:44399/api/stories').subscribe(data => {
       this.stories = data;
+    });
+  }
+
+  add(story: Story) {
+    this.httpService.postWithToken('https://localhost:44399/api/stories/', story).subscribe(data => {
+      this.stories.push(data);
+      return story;
     });
   }
 }
