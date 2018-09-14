@@ -8,9 +8,9 @@ import { RegisterComponent } from './register/register.component';
 
 
 const appRoutes: Routes = [
-    { path: 'story', component: StoryComponent },
-    { path: 'story/form', component: NewstoryComponent },
-    { path: 'story/form/:id', component: NewstoryComponent },
+    { path: 'stories', component: StoryComponent },
+    { path: 'stories/form', component: NewstoryComponent },
+    { path: 'stories/form/:id', component: NewstoryComponent },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: '', redirectTo: '/login', pathMatch: 'full' },
