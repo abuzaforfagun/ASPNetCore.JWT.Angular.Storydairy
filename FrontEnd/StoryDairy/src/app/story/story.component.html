@@ -1,7 +1,7 @@
 <h1>Stories Listing</h1>
 <div class="article-container" *ngFor="let item of storyService.stories">
   <h3 class="title">{{item.title}}</h3>
-  <p>By <span class="title">{{item.author}}</span> on <span>{{item.datetime}}</span></p>
+  <p>By <span class="title">{{item.author}}</span> on <span>{{item.datetime | date}}</span></p>
   <p class="description">{{item.description}}</p>
   
   <div class="buttons">
