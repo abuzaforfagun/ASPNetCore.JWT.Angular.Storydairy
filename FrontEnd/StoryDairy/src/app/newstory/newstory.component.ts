@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewstoryComponent implements OnInit {
 
+  title: string;
+  body: string;
+  datetime: string;
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  submitStory() {
+    console.log();
+  }
 }

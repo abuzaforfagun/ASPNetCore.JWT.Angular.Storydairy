@@ -8,6 +8,9 @@ import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { RegisterComponent } from './register/register.component';
 import { NewstoryComponent } from './newstory/newstory.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDatepicker, MatDatepickerModule, MatInputModule, MatNativeDateModule } from '@angular/material';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +23,11 @@ import { NewstoryComponent } from './newstory/newstory.component';
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
