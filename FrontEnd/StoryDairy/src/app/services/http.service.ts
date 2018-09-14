@@ -12,7 +12,7 @@ export class HttpService {
   constructor(private http: HttpClient) {
     this.httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type':  'application/json',
+        'Content-Type': 'application/json',
         'Authorization': `bearer ${localStorage.getItem('token')}`
       })
     };
@@ -30,8 +30,8 @@ export class HttpService {
   postWithToken(url, params): Observable<any> {
     return this.http.post(url, params, this.httpOptions);
   }
-  public delete(url, params): Observable<any> {
-    return this.http.delete(url, { params });
+  public delete(url, params = {}): Observable<any> {
+    return this.http.delete(url, this.httpOptions);
   }
 
   public put(url, params): Observable<any> {

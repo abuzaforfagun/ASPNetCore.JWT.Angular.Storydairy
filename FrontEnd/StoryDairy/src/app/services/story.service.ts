@@ -19,4 +19,9 @@ export class StoryService {
       return story;
     });
   }
+
+  delete(id: number) {
+    this.stories = this.stories.filter(s => s.id !== id, 1);
+    this.httpService.delete(`https://localhost:44399/api/stories/${id}`).subscribe();
+  }
 }

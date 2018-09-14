@@ -18,7 +18,7 @@ export class StoryComponent implements OnInit {
   editArticle() {
     this.router.navigate(['story/new/1']);
   }
-  deleteArticle() {
-
+  deleteArticle(item: any) {
+    this.storyService.delete(item.id);
   }
 }
