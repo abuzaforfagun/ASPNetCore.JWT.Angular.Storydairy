@@ -52,8 +52,10 @@ export class NewstoryComponent implements OnInit {
   submitStory() {
     if (!this.storyId) {
       this.storyService.add(this.story);
+    } else {
+      this.storyService.update(this.story);
+
     }
-    this.storyService.update(this.story);
     this.message = 'Story updated';
   }
 
