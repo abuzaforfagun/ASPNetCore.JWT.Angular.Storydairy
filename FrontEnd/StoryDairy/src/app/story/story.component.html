@@ -9,3 +9,4 @@
     <button class="btn" (click)="deleteArticle(item)">Delete</button>
   </div>
 </div>
+<p *ngIf="storyService.stories || storyService.stories.length === 0">No stories found</p>
