@@ -20,8 +20,8 @@ export class TopmenuComponent implements OnInit {
     this.gotoLoginPage();
   }
 
-  logIn() {
-    this.gotoLoginPage();
-  }
+  private gotoLoginPage() {
+    this.router.navigate(['/login']);
 
+  }
 }
