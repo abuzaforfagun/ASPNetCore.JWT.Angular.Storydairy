@@ -23,7 +23,7 @@ namespace StoryDairy.Core.Ripository
             {
                 story.DateTime = DateTime.Now;
             }
-            context.Add(story);
+            context.Stories.Add(story);
         }
 
         public IEnumerable<Story> Get()
