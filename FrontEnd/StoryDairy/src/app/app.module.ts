@@ -14,6 +14,7 @@ import { StoryComponent } from './story/story.component';
 import { StoryService } from './services/story.service';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpService } from './services/http.service';
+import { TopmenuComponent } from './topmenu/topmenu.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { HttpService } from './services/http.service';
     RegisterComponent,
     NewstoryComponent,
     StoryComponent,
+    TopmenuComponent,
   ],
   imports: [
     BrowserModule,

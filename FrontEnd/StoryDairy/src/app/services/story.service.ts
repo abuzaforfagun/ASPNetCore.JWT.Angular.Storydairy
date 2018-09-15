@@ -39,7 +39,7 @@ export class StoryService {
       this.stories = this.getStories();
       return  this.stories.find(s => s.id === id);
     } else {
-      id = parseInt(id);
+      id = parseInt(id.toString());
       return this.stories.find(s => s.id === id);
     }
   }
