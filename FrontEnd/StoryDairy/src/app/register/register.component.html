@@ -1,0 +1,19 @@
+<h2>User Registration</h2>
+<label for="" [class]="messageClass">{{message}}</label>
+<div class="form-group">
+  <label for="txtFullName">Full Name</label>
+  <input type="text" required  name="txtFullName" class="form-control" [(ngModel)] = "user.name">
+</div>
+<div class="form-group">
+  <label for="txtUserId">User Id</label>
+  <input type="text" required  name="txtUserId" class="form-control" [(ngModel)] = "user.userId">
+</div>
+<div class="form-group">
+  <label for="txtPassword">Password</label>
+  <input type="password" required  name="txtPassword" class="form-control" [(ngModel)] = "user.password">
+</div>
+<div class="form-group">
+  <label for="txtConfirmPassword">Confirm Password</label>
+  <input type="password" required  name="txtConfirmPassword" class="form-control" [(ngModel)] = "user.confirmPassword">
+</div>
+<button class="btn" type="submit" (click)="register()">Register</button>

@@ -33,7 +33,7 @@ namespace StoryDairy
         public void ConfigureServices(IServiceCollection services)
         {
             var url = Configuration.GetValue<string>("Url");
-
+            services.AddCors();
             services.AddMvc();
             services.AddDbContext<StoryDbContext>(
                     options => options
@@ -45,7 +45,7 @@ namespace StoryDairy
             services.AddAutoMapper();
             services.AddSwaggerGen(options =>
             {
-                options.SwaggerDoc("v1", new Info {Title = "Config API", Version = "v1"});
+                options.SwaggerDoc("v1", new Info { Title = "Config API", Version = "v1" });
             });
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
@@ -75,6 +75,11 @@ namespace StoryDairy
             {
                 app.UseHsts();
             }
+
+            app.UseCors(builder => builder.AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+            );
             app.UseHttpsRedirection();
             app.UseSwagger();
             app.UseSwaggerUI(c =>

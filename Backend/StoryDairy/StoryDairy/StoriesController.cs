@@ -88,6 +88,17 @@ namespace StoryDairy
             return Ok();
         }
 
+        [HttpGet]
+        [Route("DeleteAll")]
+        public IActionResult DeleteAll()
+        {
+            foreach (var storey in this.unitOfWork.StoryRepository.Get())
+            {
+                this.unitOfWork.StoryRepository.Delete(storey);
+            }
+            this.unitOfWork.Done();
+            return Ok();
+        }
         private bool CheckModel(Story item, out IActionResult actionResult)
         {
             if (item.IsNull())
