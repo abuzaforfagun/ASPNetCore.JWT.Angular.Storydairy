@@ -2,6 +2,6 @@ export class Story {
     id: number;
     title: string;
     userId: string;
-    description: string;
+    body: string;
     dateTime: Date;
 }
