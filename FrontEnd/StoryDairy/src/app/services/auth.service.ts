@@ -12,6 +12,7 @@ export class AuthService {
     return new Promise((resolve) => {
       this.httpService.post('https://localhost:44399/api/Auth/login', user).subscribe(data => {
         localStorage.setItem('token', data.token);
+        localStorage.setItem('user', data.userId);
         resolve(true);
       });
     });
