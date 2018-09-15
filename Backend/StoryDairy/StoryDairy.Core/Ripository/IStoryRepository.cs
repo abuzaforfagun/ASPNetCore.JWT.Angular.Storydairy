@@ -9,5 +9,6 @@ namespace StoryDairy.Core.Ripository
         IEnumerable<Story> Get();
         void Delete(Story story);
         Story Get(int id);
+        IEnumerable<Story> Get(string terms);
     }
 }
