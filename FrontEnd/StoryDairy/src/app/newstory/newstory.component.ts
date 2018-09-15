@@ -4,6 +4,7 @@ import { Story } from '../models/story';
 import { StoryService } from '../services/story.service';
 import { Router, ParamMap, ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
+import { DataSource } from '@angular/cdk/table';
 
 @Component({
   selector: 'app-newstory',
@@ -22,6 +23,7 @@ export class NewstoryComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.checkAuthentication();
     this.route.params.subscribe(params =>
       this.storyId = params['id']
     );
@@ -38,6 +40,15 @@ export class NewstoryComponent implements OnInit {
     }
   }
 
+  private checkAuthentication() {
+    this.authService.isAuthenticate().then(data => {
+      if (!data) {
+        this.router.navigate(['page-not-found']);
+
+      }
+    });
+  }
+
   submitStory() {
     if (!this.storyId) {
       this.storyService.add(this.story);
@@ -46,7 +57,7 @@ export class NewstoryComponent implements OnInit {
     this.message = 'Story updated';
   }
 
-  backToList(){
+  backToList() {
     this.router.navigate(['stories']);
   }
 }

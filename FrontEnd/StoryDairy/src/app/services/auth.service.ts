@@ -26,4 +26,13 @@ export class AuthService {
     }
     return localStorage.getItem('user');
   }
+
+  isAuthenticate(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      if (localStorage.getItem('user') === null) {
+        resolve(false);
+      }
+      resolve(true);
+    });
+  }
 }
