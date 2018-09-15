@@ -17,8 +17,8 @@ export class StoryComponent implements OnInit {
   ngOnInit() {
   }
 
-  editArticle() {
-    this.router.navigate(['stories/form/1']);
+  editArticle(item) {
+    this.router.navigate([`stories/form/${item.id}`]);
   }
   deleteArticle(item: any) {
     this.storyService.delete(item.id);

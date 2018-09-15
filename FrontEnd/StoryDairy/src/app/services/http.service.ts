@@ -35,7 +35,7 @@ export class HttpService {
   }
 
   public put(url, params): Observable<any> {
-    return this.http.put(url, params);
+    return this.http.put(url, params, this.httpOptions);
   }
 
 }

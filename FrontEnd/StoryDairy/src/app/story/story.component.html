@@ -5,7 +5,7 @@
   <p class="description">{{item.description}}</p>
   
   <div class="buttons" *ngIf="authService.getUserId() === item.userId">
-    <button class="btn" (click)="editArticle()">Edit</button>
+    <button class="btn" (click)="editArticle(item)">Edit</button>
     <button class="btn" (click)="deleteArticle(item)">Delete</button>
   </div>
 </div>
