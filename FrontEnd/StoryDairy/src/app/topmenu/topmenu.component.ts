@@ -1,3 +1,4 @@
+import { AuthService } from './../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -8,13 +9,19 @@ import { Router } from '@angular/router';
 })
 export class TopmenuComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+    private authService: AuthService) { }
 
   ngOnInit() {
   }
 
-  logOut(){
+  logOut() {
     localStorage.clear();
-    this.router.navigate(['/login']);
+    this.gotoLoginPage();
   }
+
+  logIn() {
+    this.gotoLoginPage();
+  }
+
 }

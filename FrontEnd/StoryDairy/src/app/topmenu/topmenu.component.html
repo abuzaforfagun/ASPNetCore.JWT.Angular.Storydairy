@@ -1,14 +1,17 @@
 <ul>
   <li>
-      <a routerLink="/stories" routerLinkActive="active">Home</a>
+    <a routerLink="/stories" routerLinkActive="active">Home</a>
   </li>
-  <li>
+  <li *ngIf="authService.isAuthenticate">
     <a routerLink="/stories/form" routerLinkActive="active">New story</a>
   </li>
-  <li>
-      <a href="" (click)="logOut()" >
-          <span translate>Log Out</span>
-          <button style="display:none;" id="hidden-link-to-click" routerLink="/role"></button>
-      </a>
+  <li *ngIf="authService.isAuthenticate">
+    <a href="" (click)="logOut()">
+      <span>Log Out</span>
+    </a>
+  </li>
+  <li *ngIf="!authService.isAuthenticate">
+    <a routerLink="/login" routerLinkActive="active">Login</a>
+
   </li>
 </ul>
