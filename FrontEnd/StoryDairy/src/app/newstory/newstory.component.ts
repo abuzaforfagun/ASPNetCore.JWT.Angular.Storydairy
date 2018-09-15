@@ -45,4 +45,8 @@ export class NewstoryComponent implements OnInit {
     this.storyService.update(this.story);
     this.message = 'Story updated';
   }
+
+  backToList(){
+    this.router.navigate(['stories']);
+  }
 }
