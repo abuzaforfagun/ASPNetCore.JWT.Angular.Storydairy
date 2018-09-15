@@ -1,4 +1,8 @@
 <h1>Stories Listing</h1>
+<div class="search-container row">
+  <div class="col-lg-4 col-md-4 col-sm-8"><input type="text" placeholder="search here..." [(ngModel)]="search" class="form-control"></div>
+  <div class="col-lg-4 col-md-4 col-sm-4"><button class="btn" (click)="clickSearch()">Go</button></div>
+</div >
 <div class="blog-container" *ngIf="storyService">
   <div class="article-container" *ngFor="let item of storyService.stories">
     <h3 class="title">{{item.title}}</h3>
