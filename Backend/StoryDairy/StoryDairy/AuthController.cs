@@ -31,7 +31,12 @@ namespace StoryDairy
         {
             if (_unitOfWork.UserRepository.Get(user.UserId, user.Password) != null)
             {
-                return Ok(new { Token = GenerateToekn(user) });
+                var auth = new AuthResource
+                {
+                    Token = GenerateToekn(user),
+                    UserId = user.UserId
+                };
+                return Ok(auth);
             }
             else
             {
