@@ -4,7 +4,7 @@
   <p>By <span class="title">{{item.author}}</span> on <span>{{item.dateTime | date}}</span></p>
   <p class="description">{{item.description}}</p>
   
-  <div class="buttons">
+  <div class="buttons" *ngIf="authService.getUserId() === item.userId">
     <button class="btn" (click)="editArticle()">Edit</button>
     <button class="btn" (click)="deleteArticle(item)">Delete</button>
   </div>
