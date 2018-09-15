@@ -34,17 +34,13 @@ export class StoryService {
     this.httpService.delete(`https://localhost:44399/api/stories/${id}`).subscribe();
   }
 
-  get(id: number): Promise<Story> {
-    return new Promise(resolve => {
-      if (this.stories.length === 0) {
-        this.stories = this.getStories();
-        resolve( this.stories.find(s => s.id === id) );
-      } else {
-        id = parseInt(id);
-        resolve( this.stories.find(s => s.id === id) );
-      }
-    })
-    
-
+  get(id: number) {
+    if (this.stories.length === 0) {
+      this.stories = this.getStories();
+      return  this.stories.find(s => s.id === id);
+    } else {
+      id = parseInt(id);
+      return this.stories.find(s => s.id === id);
+    }
   }
 }

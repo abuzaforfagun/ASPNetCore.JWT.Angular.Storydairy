@@ -27,7 +27,7 @@ export class NewstoryComponent implements OnInit {
 
     if (this.storyId) {
       this.story = this.storyService.get(this.storyId);
-      if (this.story.author !== this.authService.getUserId()) {
+      if (this.story.userId !== this.authService.getUserId()) {
         this.router.navigate(['page-not-found']);
       }
     }
