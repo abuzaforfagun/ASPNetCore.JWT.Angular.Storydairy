@@ -31,6 +31,13 @@ namespace StoryDairy.Core.Ripository
             return context.Stories.ToList();
         }
 
+        public IEnumerable<Story> Get(string terms)
+        {
+            return context.Stories
+                .Where(s => s.Title.Contains(terms) || s.Body.Contains(terms) || s.DateTime.Equals(terms) || s.User.Name.Contains(terms))
+                .ToList();
+        }
+
         public Story Get(int id)
         {
             var itemFromDb = context.Stories.SingleOrDefault(s => s.Id == id);

@@ -57,6 +57,16 @@ namespace StoryDairy
             return ReturnFormattedData<StoryResource>(_items);
         }
 
+        [HttpGet]
+        [Route("search")]
+        public IActionResult Get([FromQuery] string q)
+        {
+            var items = unitOfWork.StoryRepository.Get(q);
+            var _items = mapper.Map<IEnumerable<StoryResource>>(items);
+
+            return ReturnFormattedData<StoryResource>(_items);
+        }
+
         [HttpPut("{id}")]
         [Authorize]
         public IActionResult Put(int id, [FromBody] StoryResourceForUpdate story)
