@@ -41,7 +41,7 @@ export class NewstoryComponent implements OnInit {
   }
 
   private checkAuthentication() {
-    this.authService.isAuthenticate().then(data => {
+    this.authService.checkAuthentication().then(data => {
       if (!data) {
         this.router.navigate(['page-not-found']);
 

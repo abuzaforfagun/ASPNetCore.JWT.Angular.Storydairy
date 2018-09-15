@@ -8,13 +8,19 @@ import { User } from '../models/user';
 export class AuthService {
   token: string;
   userId: string;
-  constructor(private httpService: HttpService) { }
+  isAuthenticate = false;
+  constructor(private httpService: HttpService) {
+    this.checkAuthentication().then(data => {
+      this.isAuthenticate = data;
+    });
+  }
   login(user: User): Promise<any> {
     return new Promise((resolve) => {
       this.httpService.post('https://localhost:44399/api/Auth/login', user).subscribe(data => {
         localStorage.setItem('token', data.token);
         localStorage.setItem('user', data.userId);
         this.userId = data.userId;
+        this.isAuthenticate = true;
         resolve(true);
       });
     });
@@ -27,7 +33,7 @@ export class AuthService {
     return localStorage.getItem('user');
   }
 
-  isAuthenticate(): Promise<any> {
+  checkAuthentication(): Promise<any> {
     return new Promise((resolve, reject) => {
       if (localStorage.getItem('user') === null) {
         resolve(false);
