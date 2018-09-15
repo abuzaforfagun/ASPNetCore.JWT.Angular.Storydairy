@@ -13,6 +13,7 @@ import { switchMap } from 'rxjs/operators';
 export class NewstoryComponent implements OnInit {
   story: Story;
   storyId: number;
+  message: string;
   constructor(private storyService: StoryService,
     private router: Router,
     private authService: AuthService,
@@ -42,5 +43,6 @@ export class NewstoryComponent implements OnInit {
       this.storyService.add(this.story);
     }
     this.storyService.update(this.story);
+    this.message = 'Story updated';
   }
 }
