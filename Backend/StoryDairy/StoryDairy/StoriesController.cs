@@ -44,8 +44,12 @@ namespace StoryDairy
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult Get([FromQuery] string q = "")
         {
+            if (q != "")
+            {
+                return search(q);
+            }
             var items = unitOfWork.StoryRepository.Get().ToList();
             if (items.Count() == 0)
             {
@@ -57,9 +61,8 @@ namespace StoryDairy
             return ReturnFormattedData<StoryResource>(_items);
         }
 
-        [HttpGet]
-        [Route("search")]
-        public IActionResult Get([FromQuery] string q)
+
+        private IActionResult search(string q)
         {
             var items = unitOfWork.StoryRepository.Get(q);
             var _items = mapper.Map<IEnumerable<StoryResource>>(items);

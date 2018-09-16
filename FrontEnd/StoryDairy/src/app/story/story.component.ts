@@ -8,7 +8,7 @@ import { Route, Router } from '@angular/router';
   templateUrl: './story.component.html',
   styleUrls: ['./story.component.css']
 })
-export class StoryComponent implements OnInit, AfterViewInit {
+export class StoryComponent implements OnInit {
 
   search: string;
   private _storis: any[];
@@ -20,8 +20,6 @@ export class StoryComponent implements OnInit, AfterViewInit {
     this._storis = this.storyService.stories;
   }
 
-  ngAfterViewInit(): void {
-  }
   editArticle(item) {
     this.router.navigate([`stories/form/${item.id}`]);
   }

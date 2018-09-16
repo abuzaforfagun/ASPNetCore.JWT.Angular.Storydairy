@@ -18,7 +18,7 @@ export class StoryService {
   }
 
   searchStories(terms) {
-    this.httpService.get(`https://localhost:44399/api/stories/search?q=${terms}`).subscribe(data => {
+    this.httpService.get(`https://localhost:44399/api/stories?q=${terms}`).subscribe(data => {
       this.stories = data;
     });
   }
