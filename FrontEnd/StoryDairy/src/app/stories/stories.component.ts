@@ -5,10 +5,10 @@ import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-story',
-  templateUrl: './story.component.html',
-  styleUrls: ['./story.component.css']
+  templateUrl: './stories.component.html',
+  styleUrls: ['./stories.component.css']
 })
-export class StoryComponent implements OnInit {
+export class StoriesComponent implements OnInit {
 
   constructor(private router: Router,
     private storyService: StoryService,
