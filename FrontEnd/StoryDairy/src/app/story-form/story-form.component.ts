@@ -6,10 +6,10 @@ import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-newstory',
-  templateUrl: './newstory.component.html',
-  styleUrls: ['./newstory.component.css']
+  templateUrl: './story-form.component.html',
+  styleUrls: ['./story-form.component.css']
 })
-export class NewstoryComponent implements OnInit {
+export class StoryFormComponent implements OnInit {
   story: Story;
   storyId: number;
   message: string;

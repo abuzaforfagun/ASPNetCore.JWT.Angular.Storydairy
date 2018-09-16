@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { RegisterComponent } from './register/register.component';
-import { NewstoryComponent } from './newstory/newstory.component';
+import { StoryFormComponent } from './story-form/story-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDatepicker, MatDatepickerModule, MatInputModule, MatNativeDateModule } from '@angular/material';
 import { StoriesComponent } from './stories/stories.component';
@@ -23,7 +23,7 @@ import { HttpService } from '../services/http.service';
     LoginComponent,
     PageNotFoundComponent,
     RegisterComponent,
-    NewstoryComponent,
+    StoryFormComponent,
     StoriesComponent,
     TopmenuComponent,
   ],
