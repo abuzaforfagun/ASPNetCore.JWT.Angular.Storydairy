@@ -38,10 +38,19 @@ Storage: Local storage
 
 * Angular
 
+* SQL Server
+
 ### Launch web api
+
+* Checkout appsetting.json inside ```ASPNetCore.Angular.StoryDairy\Backend\StoryDairy`` and make sure connection string is okay.
+
+Now you have two options to run the web api.
+
 **Option 1:**
 
 * Open ```StoryDairy.sln``` from ```ASPNetCore.Angular.StoryDairy\Backend\StoryDairy``` using visual studio. 
+
+* run ```Update-Database``` from package manager console.
 
 * Hit run button or ```F5``` key.
 
@@ -50,6 +59,8 @@ Storage: Local storage
 * Open command prompt from ```ASPNetCore.Angular.StoryDairy\Backend\StoryDairy```. 
 
 * Type ```dotnet restore```. 
+
+* Execute ```dotnet ef database update```
 
 * Execute ```dotnet run --project StoryDairy/StoryDairy.csproj```
 
