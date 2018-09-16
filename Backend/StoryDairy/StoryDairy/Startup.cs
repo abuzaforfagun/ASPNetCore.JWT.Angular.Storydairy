@@ -38,6 +38,10 @@ namespace StoryDairy
             
             services.AddSwaggerGen(options =>
             {
+                options.AddSecurityDefinition("Bearer", new ApiKeyScheme { In = "header", Description = "Please enter JWT with Bearer into field", Name = "Authorization", Type = "apiKey" });
+                options.AddSecurityRequirement(new Dictionary<string, IEnumerable<string>> {
+                    { "Bearer", Enumerable.Empty<string>() },
+                });
                 options.SwaggerDoc("v1", new Info { Title = "Config API", Version = "v1" });
                 
             });
