@@ -7,14 +7,14 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { RegisterComponent } from './register/register.component';
-import { NewstoryComponent } from './newstory/newstory.component';
+import { StoryFormComponent } from './story-form/story-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDatepicker, MatDatepickerModule, MatInputModule, MatNativeDateModule } from '@angular/material';
-import { StoryComponent } from './story/story.component';
-import { StoryService } from './services/story.service';
+import { StoriesComponent } from './stories/stories.component';
 import { HttpClientModule } from '@angular/common/http';
-import { HttpService } from './services/http.service';
 import { TopmenuComponent } from './topmenu/topmenu.component';
+import { StoryService } from '../services/story.service';
+import { HttpService } from '../services/http.service';
 
 
 @NgModule({
@@ -23,8 +23,8 @@ import { TopmenuComponent } from './topmenu/topmenu.component';
     LoginComponent,
     PageNotFoundComponent,
     RegisterComponent,
-    NewstoryComponent,
-    StoryComponent,
+    StoryFormComponent,
+    StoriesComponent,
     TopmenuComponent,
   ],
   imports: [

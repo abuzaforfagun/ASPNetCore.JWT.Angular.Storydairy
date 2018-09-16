@@ -1,14 +1,14 @@
-import { AuthService } from './../services/auth.service';
-import { StoryService } from './../services/story.service';
 import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
+import { StoryService } from '../../services/story.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-story',
-  templateUrl: './story.component.html',
-  styleUrls: ['./story.component.css']
+  templateUrl: './stories.component.html',
+  styleUrls: ['./stories.component.css']
 })
-export class StoryComponent implements OnInit {
+export class StoriesComponent implements OnInit {
 
   search: string;
   private _storis: any[];

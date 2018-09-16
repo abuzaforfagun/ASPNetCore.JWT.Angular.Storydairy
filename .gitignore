@@ -1,2 +1,3 @@
 .vs/
 FrontEnd/StoryDairy/package-lock.json
+/FrontEnd/StoryDairy/node_modules

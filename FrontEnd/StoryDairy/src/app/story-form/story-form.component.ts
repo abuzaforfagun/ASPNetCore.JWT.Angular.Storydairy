@@ -1,17 +1,15 @@
-import { AuthService } from './../services/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { Story } from '../models/story';
-import { StoryService } from '../services/story.service';
 import { Router, ParamMap, ActivatedRoute } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
-import { DataSource } from '@angular/cdk/table';
+import { Story } from '../../models/story';
+import { StoryService } from '../../services/story.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-newstory',
-  templateUrl: './newstory.component.html',
-  styleUrls: ['./newstory.component.css']
+  templateUrl: './story-form.component.html',
+  styleUrls: ['./story-form.component.css']
 })
-export class NewstoryComponent implements OnInit {
+export class StoryFormComponent implements OnInit {
   story: Story;
   storyId: number;
   message: string;
