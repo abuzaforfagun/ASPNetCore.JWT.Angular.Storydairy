@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2016
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoryDairy", "StoryDairy\StoryDairy.csproj", "{2539FF2C-C4D9-44B2-9DE7-075208255E13}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoryDairy", "StoryDairy\StoryDairy.csproj", "{2539FF2C-C4D9-44B2-9DE7-075208255E13}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoryDairy.Core", "StoryDairy.Core\StoryDairy.Core.csproj", "{C3B1F3A4-3DF7-48D4-8115-1B1335BB7E60}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoryDairy.Core", "StoryDairy.Core\StoryDairy.Core.csproj", "{C3B1F3A4-3DF7-48D4-8115-1B1335BB7E60}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

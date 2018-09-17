@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
-import { StoryService } from '../services/story.service';
-import { AuthService } from '../services/auth.service';
+import { StoryService } from '../../services/story.service';
+import { AuthService } from '../../services/auth.service';
+
 
 @Component({
   selector: 'app-story',

@@ -15,11 +15,11 @@ export class UserService {
   add(user: NewUser): Promise<any> {
     return new Promise((resolve) => {
       this.httpService.post('https://localhost:44399/api/users/', user).subscribe(data => {
-        let _user = new User();
+        const _user = new User();
         _user.userId = user.userId;
         _user.password = user.password;
-        this.httpService.login(_user).then(data => {
-          resolve(data);
+        this.httpService.login(_user).then(loginData => {
+          resolve(loginData);
         });
       });
     });
