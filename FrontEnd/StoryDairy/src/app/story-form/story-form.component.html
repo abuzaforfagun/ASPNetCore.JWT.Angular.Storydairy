@@ -1,23 +1,25 @@
-<h2>{{formAction}} Story</h2>
-<label class="information">{{message}}</label>
-<div class="form-group">
-  <label for="txtTitle">Title</label>
-  <input type="text" name="txtTitle" [(ngModel)]="story.title" class="form-control">
-</div>
-<div class="form-group">
-  <label for="">Body</label>
-  <textarea type="text" name="txtBody" [(ngModel)]="story.body" class="form-control"></textarea>
-</div>
-<div class="form-group">
-  <label for="">Published Date</label>
-  <div>
-
-    <mat-form-field>
-      <input [(ngModel)]="story.dateTime" matInput [matDatepicker]="myDatepicker">
-      <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
-      <mat-datepicker #myDatepicker></mat-datepicker>
-    </mat-form-field>
+<ng-container  *ngIf="story">
+  <h2>{{formAction}} Story</h2>
+  <label class="information">{{message}}</label>
+  <div class="form-group">
+    <label for="txtTitle">Title</label>
+    <input type="text" name="txtTitle" [(ngModel)]="story.title" class="form-control">
   </div>
-  <button class="btn" (click)="submitStory()">Submit</button>
-  <button class="btn" (click)="backToList()">Back to list</button>
-</div>
+  <div class="form-group">
+    <label for="">Body</label>
+    <textarea type="text" name="txtBody" [(ngModel)]="story.body" class="form-control"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="">Published Date</label>
+    <div>
+
+      <mat-form-field>
+        <input [(ngModel)]="story.dateTime" matInput [matDatepicker]="myDatepicker">
+        <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+        <mat-datepicker #myDatepicker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <button class="btn" (click)="submitStory()">Submit</button>
+    <button class="btn" (click)="backToList()">Back to list</button>
+  </div>
+</ng-container >
