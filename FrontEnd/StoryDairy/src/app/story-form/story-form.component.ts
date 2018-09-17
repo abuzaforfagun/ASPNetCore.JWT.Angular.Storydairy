@@ -13,6 +13,7 @@ export class StoryFormComponent implements OnInit {
   story: Story;
   storyId: number;
   message: string;
+  formAction = 'Create';
   constructor(private storyService: StoryService,
     private router: Router,
     private authService: AuthService,
@@ -27,6 +28,7 @@ export class StoryFormComponent implements OnInit {
     );
 
     if (this.storyId) {
+      this.formAction = 'Update';
       this.story = this.storyService.get(this.storyId);
       if (!this.story) {
         this.router.navigate(['page-not-found']);
