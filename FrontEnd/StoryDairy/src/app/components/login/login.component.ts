@@ -1,3 +1,4 @@
+import { RoutingService } from './../../services/routing.service';
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/user';
 import { Router } from '@angular/router';
@@ -13,23 +14,21 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent implements OnInit {
   user: User;
   loginMessage: string;
-  constructor(private rotuer: Router,
-    private httpService: HttpService,
-    private authService: AuthService) {
+  constructor(private httpService: HttpService,
+    private authService: AuthService,
+    private routingService: RoutingService) {
     this.user = new User();
   }
 
   ngOnInit() {
     if (this.authService.getStatus()) {
-      this.rotuer.navigate(['stories']);
-
+      this.routingService.toStories();
     }
   }
 
   login() {
     this.httpService.login(this.user).then((data) => {
       if (data) {
-        this.rotuer.navigate(['stories']);
       } else {
         this.loginMessage = 'Failed to login';
       }
@@ -37,6 +36,6 @@ export class LoginComponent implements OnInit {
   }
 
   goRegisterComponent() {
-    this.rotuer.navigate(['register']);
+    this.routingService.toRegister();
   }
 }
