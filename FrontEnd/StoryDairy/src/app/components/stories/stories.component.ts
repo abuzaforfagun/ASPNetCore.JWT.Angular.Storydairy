@@ -10,20 +10,23 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './stories.component.html',
   styleUrls: ['./stories.component.css']
 })
-export class StoryComponent implements OnInit, OnDestroy {
+export class StoriesComponent implements OnInit, OnDestroy {
 
   search: string;
   private _stories: any[];
-    constructor(private authService: AuthService,
+  constructor(private authService: AuthService,
     private storyService: StoryService,
     private routingService: RoutingService) { }
 
   ngOnInit() {
-    this._stories = this.storyService.stories;
+    // this._stories = this.storyService.stories;
   }
 
   ngOnDestroy(): void {
-    this.revertStoryListOfStoryService();
+    if (this._stories && this._stories.length > 0) {
+      this.revertStoryListOfStoryService();
+
+    }
   }
 
   editArticle(item) {
@@ -34,7 +37,7 @@ export class StoryComponent implements OnInit, OnDestroy {
   }
 
   clickSearch() {
-    if (this._stories.length === 0) {
+    if (!this._stories || this._stories.length === 0) {
       this._stories = this.storyService.stories;
     }
     if (this.search) {
