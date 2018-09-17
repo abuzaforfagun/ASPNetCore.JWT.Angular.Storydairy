@@ -31,9 +31,7 @@ export class StoryService {
   }
 
   update(story: Story) {
-    this.httpService.put(`https://localhost:44399/api/stories/${story.id}`, story).subscribe(data => {
-      this.stories[data.id] = data;
-    });
+    this.httpService.put(`https://localhost:44399/api/stories/${story.id}`, story).subscribe();
   }
   delete(id: number) {
     this.stories = this.stories.filter(s => s.id !== id, 1);
@@ -42,9 +40,9 @@ export class StoryService {
 
   get(id: number) {
     if (this.stories.length === 0) {
-      this.stories = this.getStories();
-      return  this.stories.find(s => s.id === id);
+      return undefined;
     } else {
+      // tslint:disable-next-line:radix
       id = parseInt(id.toString());
       return this.stories.find(s => s.id === id);
     }

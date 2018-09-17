@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/services/auth.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-topmenu',
@@ -16,12 +16,13 @@ export class TopmenuComponent implements OnInit {
   }
 
   logOut() {
-    localStorage.clear();
+    this.authService.clearAuthentication();
     this.gotoLoginPage();
   }
 
   private gotoLoginPage() {
-    this.router.navigate(['/login']);
+    this.authService.gotoLoginPage();
+    // this.router.navigate(['/login']);
 
   }
 }

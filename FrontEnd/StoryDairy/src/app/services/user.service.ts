@@ -18,7 +18,7 @@ export class UserService {
         let _user = new User();
         _user.userId = user.userId;
         _user.password = user.password;
-        this.authService.login(_user).then(data => {
+        this.httpService.login(_user).then(data => {
           resolve(data);
         });
       });

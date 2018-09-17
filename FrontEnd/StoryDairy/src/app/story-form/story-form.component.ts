@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ParamMap, ActivatedRoute } from '@angular/router';
-import { Story } from '../../models/story';
-import { StoryService } from '../../services/story.service';
-import { AuthService } from '../../services/auth.service';
+import { Story } from '../models/story';
+import { StoryService } from '../services/story.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-newstory',
@@ -13,6 +13,7 @@ export class StoryFormComponent implements OnInit {
   story: Story;
   storyId: number;
   message: string;
+  formAction = 'Create';
   constructor(private storyService: StoryService,
     private router: Router,
     private authService: AuthService,
@@ -27,24 +28,26 @@ export class StoryFormComponent implements OnInit {
     );
 
     if (this.storyId) {
-      this.story = this.storyService.get(this.storyId);
-      if (this.story.userId !== this.authService.getUserId()) {
-        this.router.navigate(['page-not-found']);
-      }
+      this.fillUpdateForm();
     }
+  }
 
-    if (this.storyId && !this.story) {
+  private fillUpdateForm() {
+    this.formAction = 'Update';
+    this.story = this.storyService.get(this.storyId);
+    if (!this.story) {
+      this.router.navigate(['page-not-found']);
+      return;
+    }
+    if (this.story.userId !== this.authService.getUserId()) {
       this.router.navigate(['page-not-found']);
     }
   }
 
   private checkAuthentication() {
-    this.authService.checkAuthentication().then(data => {
-      if (!data) {
-        this.router.navigate(['page-not-found']);
-
-      }
-    });
+    if (!this.authService.getStatus()) {
+      this.router.navigate(['page-not-found']);
+    }
   }
 
   submitStory() {
