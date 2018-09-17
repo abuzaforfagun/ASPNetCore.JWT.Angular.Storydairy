@@ -13,11 +13,16 @@ export class LoginComponent implements OnInit {
   user: User;
   loginMessage: string;
   constructor(private rotuer: Router,
-    private httpService: HttpService) {
+    private httpService: HttpService,
+    private authService: AuthService) {
     this.user = new User();
   }
 
   ngOnInit() {
+    if (this.authService.getStatus()) {
+      this.rotuer.navigate(['stories']);
+
+    }
   }
 
   login() {
