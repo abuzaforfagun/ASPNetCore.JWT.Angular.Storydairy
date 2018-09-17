@@ -2,7 +2,7 @@
 <div class="blog-container" *ngIf="storyService">
   <div class="article-container" *ngFor="let item of storyService.stories">
     <h3 class="title">{{item.title}}</h3>
-    <p>By <span class="title">{{item.author}}</span> on <span>{{item.dateTime | date}}</span></p>
+    <p>By <span class="title">{{item.userId}}</span> on <span>{{item.dateTime | date}}</span></p>
     <p class="description">{{item.body}}</p>
 
     <div class="buttons" *ngIf="authService.getUserId() === item.userId">
