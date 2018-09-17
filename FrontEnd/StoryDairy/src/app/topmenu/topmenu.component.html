@@ -6,7 +6,7 @@
     <a routerLink="/stories/form" routerLinkActive="active">New story</a>
   </li>
   <li *ngIf="authService.getStatus()">
-    <a href="" (click)="logOut()">
+    <a routerLink="/login"  (click)="logOut()">
       <span>Log Out</span>
     </a>
   </li>

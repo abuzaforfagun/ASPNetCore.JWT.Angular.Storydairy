@@ -21,7 +21,8 @@ export class TopmenuComponent implements OnInit {
   }
 
   private gotoLoginPage() {
-    this.router.navigate(['/login']);
+    this.authService.gotoLoginPage();
+    // this.router.navigate(['/login']);
 
   }
 }

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { User } from '../models/user';
 import { Observable, Subject, ReplaySubject, from, of, range } from 'rxjs';
 import { map, filter, switchMap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class AuthService {
   private token: string;
   private userId: string;
   private isAuthenticate = false;
-  constructor() {
+  constructor(private router: Router) {
     this.checkAuthentication().then(data => {
       this.isAuthenticate = data;
     });
@@ -33,10 +34,10 @@ export class AuthService {
   }
 
   getUserId() {
-    if (this.userId) {
-      return this.userId;
+    if (!this.userId) {
+      this.userId = localStorage.getItem('user');
     }
-    return localStorage.getItem('user');
+    return this.userId;
   }
 
   private checkAuthentication(): Promise<any> {
@@ -54,5 +55,12 @@ export class AuthService {
 
   clearAuthentication() {
     localStorage.clear();
+    this.isAuthenticate = false;
+    this.userId = undefined;
+  }
+
+  gotoLoginPage() {
+    this.router.navigate(['/login']);
+
   }
 }
