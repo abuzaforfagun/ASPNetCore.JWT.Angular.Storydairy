@@ -67,7 +67,7 @@ namespace StoryDairy
             }
             var itemFromDb = unitOfWork.StoryRepository.Get(id);
             if (CheckModel(itemFromDb, out var actionResult)) return actionResult;
-            
+
             mapper.Map<StoryResourceForUpdate, Story>(story, itemFromDb);
             unitOfWork.Done();
             return Ok(itemFromDb);
@@ -88,17 +88,6 @@ namespace StoryDairy
             return Ok();
         }
 
-        [HttpGet]
-        [Route("DeleteAll")]
-        public IActionResult DeleteAll()
-        {
-            foreach (var storey in this.unitOfWork.StoryRepository.Get())
-            {
-                this.unitOfWork.StoryRepository.Delete(storey);
-            }
-            this.unitOfWork.Done();
-            return Ok();
-        }
         private bool CheckModel(Story item, out IActionResult actionResult)
         {
             if (item.IsNull())
