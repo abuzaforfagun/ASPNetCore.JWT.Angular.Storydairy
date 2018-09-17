@@ -1,5 +1,5 @@
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { RoutingService } from './../../services/routing.service';
-import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { StoryService } from '../../services/story.service';
 import { AuthService } from '../../services/auth.service';
@@ -10,16 +10,20 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './stories.component.html',
   styleUrls: ['./stories.component.css']
 })
-export class StoriesComponent implements OnInit {
+export class StoryComponent implements OnInit, OnDestroy {
 
   search: string;
-  private _storis: any[];
-  constructor(private authService: AuthService,
+  private _stories: any[];
+    constructor(private authService: AuthService,
     private storyService: StoryService,
     private routingService: RoutingService) { }
 
   ngOnInit() {
-    this._storis = this.storyService.stories;
+    this._stories = this.storyService.stories;
+  }
+
+  ngOnDestroy(): void {
+    this.revertStoryListOfStoryService();
   }
 
   editArticle(item) {
@@ -30,13 +34,17 @@ export class StoriesComponent implements OnInit {
   }
 
   clickSearch() {
-    if (this._storis.length === 0) {
-      this._storis = this.storyService.stories;
+    if (this._stories.length === 0) {
+      this._stories = this.storyService.stories;
     }
     if (this.search) {
       this.storyService.searchStories(this.search);
     } else {
-      this.storyService.stories = this._storis;
+      this.revertStoryListOfStoryService();
     }
+  }
+
+  private revertStoryListOfStoryService() {
+    this.storyService.stories = this._stories;
   }
 }
