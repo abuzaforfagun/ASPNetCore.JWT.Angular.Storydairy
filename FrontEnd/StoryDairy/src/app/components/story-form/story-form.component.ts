@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ParamMap, ActivatedRoute } from '@angular/router';
-import { Story } from '../models/story';
-import { StoryService } from '../services/story.service';
-import { AuthService } from '../services/auth.service';
+import { Story } from '../../models/story';
+import { StoryService } from '../../services/story.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-newstory',
