@@ -25,9 +25,7 @@ export class StoryService {
   }
 
   update(story: Story) {
-    this.httpService.put(`https://localhost:44399/api/stories/${story.id}`, story).subscribe(data => {
-      this.stories[data.id] = data;
-    });
+    this.httpService.put(`https://localhost:44399/api/stories/${story.id}`, story).subscribe();
   }
   delete(id: number) {
     this.stories = this.stories.filter(s => s.id !== id, 1);
