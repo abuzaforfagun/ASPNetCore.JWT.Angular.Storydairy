@@ -45,12 +45,9 @@ export class StoryFormComponent implements OnInit {
   }
 
   private checkAuthentication() {
-    this.authService.checkAuthentication().then(data => {
-      if (!data) {
-        this.router.navigate(['page-not-found']);
-
-      }
-    });
+    if (!this.authService.getStatus()) {
+      this.router.navigate(['page-not-found']);
+    }
   }
 
   submitStory() {

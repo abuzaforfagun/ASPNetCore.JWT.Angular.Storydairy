@@ -1,3 +1,4 @@
+import { HttpService } from './../services/http.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
   user: User;
   loginMessage: string;
   constructor(private rotuer: Router,
-    private authService: AuthService) {
+    private httpService: HttpService) {
     this.user = new User();
   }
 
@@ -20,7 +21,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.authService.login(this.user).then((data) => {
+    this.httpService.login(this.user).then((data) => {
       if (data) {
         this.rotuer.navigate(['stories']);
       } else {

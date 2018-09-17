@@ -8,26 +8,28 @@ import { map, filter, switchMap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
-  token: string;
-  userId: string;
-  isAuthenticate = false;
-  constructor(private httpService: HttpService) {
+  private token: string;
+  private userId: string;
+  private isAuthenticate = false;
+  constructor() {
     this.checkAuthentication().then(data => {
       this.isAuthenticate = data;
     });
   }
-  login(user: User): Promise<any> {
-    return new Promise((resolve) => {
-      this.httpService.post('https://localhost:44399/api/Auth/login', user)
-        .subscribe(data => {
-          this.token = data.token;
-          localStorage.setItem('token', data.token);
-          localStorage.setItem('user', data.userId);
-          this.userId = data.userId;
-          this.isAuthenticate = true;
-          resolve(true);
-        }, err => resolve(false));
-    });
+
+  getToken() {
+    return this.token;
+  }
+
+  getStatus() {
+    return this.isAuthenticate;
+  }
+  authenticateUser(data) {
+    this.token = data.token;
+    localStorage.setItem('token', data.token);
+    localStorage.setItem('user', data.userId);
+    this.userId = data.userId;
+    this.isAuthenticate = true;
   }
 
   getUserId() {
@@ -37,16 +39,15 @@ export class AuthService {
     return localStorage.getItem('user');
   }
 
-  checkAuthentication(): Promise<any> {
+  private checkAuthentication(): Promise<any> {
     return new Promise((resolve, reject) => {
-      if (this.token) {
-        resolve(this.token);
+      if (!this.token) {
+        const tokenFromStorage = localStorage.getItem('token');
+        if (tokenFromStorage === null) {
+          resolve(false);
+        }
+        this.token = tokenFromStorage;
       }
-      const tokenFromStorage = localStorage.getItem('user');
-      if (tokenFromStorage === null) {
-        resolve(false);
-      }
-      this.token = tokenFromStorage;
       resolve(true);
     });
   }
