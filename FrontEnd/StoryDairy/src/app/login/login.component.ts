@@ -10,6 +10,7 @@ import { User } from '../../models/user';
 })
 export class LoginComponent implements OnInit {
   user: User;
+  loginMessage: string;
   constructor(private rotuer: Router,
     private authService: AuthService) {
     this.user = new User();
@@ -22,6 +23,8 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.user).then((data) => {
       if (data) {
         this.rotuer.navigate(['stories']);
+      } else {
+        this.loginMessage = 'Failed to login';
       }
     });
   }

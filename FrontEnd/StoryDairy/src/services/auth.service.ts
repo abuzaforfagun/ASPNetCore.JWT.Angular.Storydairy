@@ -1,6 +1,8 @@
 import { HttpService } from './http.service';
 import { Injectable } from '@angular/core';
 import { User } from 'src/models/user';
+import { Observable, Subject, ReplaySubject, from, of, range } from 'rxjs';
+import { map, filter, switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -16,13 +18,14 @@ export class AuthService {
   }
   login(user: User): Promise<any> {
     return new Promise((resolve) => {
-      this.httpService.post('https://localhost:44399/api/Auth/login', user).subscribe(data => {
+      this.httpService.post('https://localhost:44399/api/Auth/login', user)
+      .subscribe(data => {
         localStorage.setItem('token', data.token);
         localStorage.setItem('user', data.userId);
         this.userId = data.userId;
         this.isAuthenticate = true;
         resolve(true);
-      });
+      }, err => resolve(false));
     });
   }
 
