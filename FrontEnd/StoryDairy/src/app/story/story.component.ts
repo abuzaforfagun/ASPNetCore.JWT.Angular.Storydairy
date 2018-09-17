@@ -11,13 +11,13 @@ import { Route, Router } from '@angular/router';
 export class StoryComponent implements OnInit, OnDestroy {
 
   search: string;
-  private _storis: any[];
+  private _stories: any[];
   constructor(private router: Router,
     private storyService: StoryService,
     private authService: AuthService) { }
 
   ngOnInit() {
-    this._storis = this.storyService.stories;
+    this._stories = this.storyService.stories;
   }
 
   ngOnDestroy(): void {
@@ -32,8 +32,8 @@ export class StoryComponent implements OnInit, OnDestroy {
   }
 
   clickSearch() {
-    if (this._storis.length === 0) {
-      this._storis = this.storyService.stories;
+    if (this._stories.length === 0) {
+      this._stories = this.storyService.stories;
     }
     if (this.search) {
       this.storyService.searchStories(this.search);
@@ -43,6 +43,6 @@ export class StoryComponent implements OnInit, OnDestroy {
   }
 
   private revertStoryListOfStoryService() {
-    this.storyService.stories = this._storis;
+    this.storyService.stories = this._stories;
   }
 }
