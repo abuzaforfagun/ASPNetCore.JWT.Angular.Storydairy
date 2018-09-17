@@ -36,10 +36,6 @@ export class StoryFormComponent implements OnInit {
         this.router.navigate(['page-not-found']);
       }
     }
-
-    if (this.storyId && !this.story) {
-      this.router.navigate(['page-not-found']);
-    }
   }
 
   private checkAuthentication() {
