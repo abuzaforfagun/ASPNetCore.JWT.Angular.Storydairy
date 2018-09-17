@@ -1,6 +1,6 @@
 import { AuthService } from './../services/auth.service';
 import { StoryService } from './../services/story.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Route, Router } from '@angular/router';
 
 @Component({
@@ -8,7 +8,7 @@ import { Route, Router } from '@angular/router';
   templateUrl: './story.component.html',
   styleUrls: ['./story.component.css']
 })
-export class StoryComponent implements OnInit {
+export class StoryComponent implements OnInit, OnDestroy {
 
   search: string;
   private _storis: any[];
@@ -18,6 +18,10 @@ export class StoryComponent implements OnInit {
 
   ngOnInit() {
     this._storis = this.storyService.stories;
+  }
+
+  ngOnDestroy(): void {
+    this.revertStoryListOfStoryService();
   }
 
   editArticle(item) {
@@ -34,7 +38,11 @@ export class StoryComponent implements OnInit {
     if (this.search) {
       this.storyService.searchStories(this.search);
     } else {
-      this.storyService.stories = this._storis;
+      this.revertStoryListOfStoryService();
     }
+  }
+
+  private revertStoryListOfStoryService() {
+    this.storyService.stories = this._storis;
   }
 }
