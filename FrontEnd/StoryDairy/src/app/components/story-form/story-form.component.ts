@@ -3,6 +3,7 @@ import { Router, ParamMap, ActivatedRoute } from '@angular/router';
 import { Story } from '../../models/story';
 import { StoryService } from '../../services/story.service';
 import { AuthService } from '../../services/auth.service';
+import { RoutingService } from '../../services/routing.service';
 
 @Component({
   selector: 'app-newstory',
@@ -15,9 +16,9 @@ export class StoryFormComponent implements OnInit {
   message: string;
   formAction = 'Create';
   constructor(private storyService: StoryService,
-    private router: Router,
     private authService: AuthService,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private routingService: RoutingService) {
     this.story = new Story();
   }
 
@@ -35,18 +36,15 @@ export class StoryFormComponent implements OnInit {
   private fillUpdateForm() {
     this.formAction = 'Update';
     this.story = this.storyService.get(this.storyId);
-    if (!this.story) {
-      this.router.navigate(['page-not-found']);
-      return;
-    }
-    if (this.story.userId !== this.authService.getUserId()) {
-      this.router.navigate(['page-not-found']);
+
+    if (!this.story || this.story.userId !== this.authService.getUserId()) {
+      this.routingService.toPageNotFound();
     }
   }
 
   private checkAuthentication() {
     if (!this.authService.getStatus()) {
-      this.router.navigate(['page-not-found']);
+      this.routingService.toPageNotFound();
     }
   }
 
@@ -61,6 +59,6 @@ export class StoryFormComponent implements OnInit {
   }
 
   backToList() {
-    this.router.navigate(['stories']);
+    this.routingService.toStories();
   }
 }

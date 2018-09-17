@@ -1,3 +1,4 @@
+import { RoutingService } from './../../services/routing.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
@@ -9,8 +10,8 @@ import { AuthService } from '../../services/auth.service';
 })
 export class TopmenuComponent implements OnInit {
 
-  constructor(private router: Router,
-    private authService: AuthService) { }
+  constructor(private authService: AuthService,
+    private routingService: RoutingService) { }
 
   ngOnInit() {
   }
@@ -21,8 +22,7 @@ export class TopmenuComponent implements OnInit {
   }
 
   private gotoLoginPage() {
-    this.authService.gotoLoginPage();
-    // this.router.navigate(['/login']);
+    this.routingService.toLogin();
 
   }
 }

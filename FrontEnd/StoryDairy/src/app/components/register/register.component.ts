@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NewUser } from '../../models/newuser';
 import { UserService } from '../../services/user.service';
+import { RoutingService } from '../../services/routing.service';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +14,7 @@ export class RegisterComponent implements OnInit {
   message: string;
   messageClass: string;
   constructor(private userService: UserService,
-    private router: Router) {
+    private routingService: RoutingService) {
     this.user = new NewUser();
   }
 
@@ -23,7 +24,7 @@ export class RegisterComponent implements OnInit {
   register() {
     if (this.checkInputs()) {
       this.userService.add(this.user).then(data => {
-        this.router.navigate(['/stories']);
+        this.routingService.toStories();
       });
 
     }

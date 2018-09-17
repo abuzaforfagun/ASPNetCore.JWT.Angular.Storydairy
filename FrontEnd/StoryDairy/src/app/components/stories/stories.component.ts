@@ -1,3 +1,4 @@
+import { RoutingService } from './../../services/routing.service';
 import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { StoryService } from '../../services/story.service';
@@ -15,14 +16,14 @@ export class StoriesComponent implements OnInit {
   private _storis: any[];
   constructor(private router: Router,
     private storyService: StoryService,
-    private authService: AuthService) { }
+    private routingService: RoutingService) { }
 
   ngOnInit() {
     this._storis = this.storyService.stories;
   }
 
   editArticle(item) {
-    this.router.navigate([`stories/form/${item.id}`]);
+    this.routingService.toStoryFormWithParams(item.id);
   }
   deleteArticle(item: any) {
     this.storyService.delete(item.id);
