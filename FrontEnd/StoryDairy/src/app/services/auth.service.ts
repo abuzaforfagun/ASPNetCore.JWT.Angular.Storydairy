@@ -1,6 +1,6 @@
 import { HttpService } from './http.service';
 import { Injectable } from '@angular/core';
-import { User } from 'src/models/user';
+import { User } from '../models/user';
 import { Observable, Subject, ReplaySubject, from, of, range } from 'rxjs';
 import { map, filter, switchMap } from 'rxjs/operators';
 

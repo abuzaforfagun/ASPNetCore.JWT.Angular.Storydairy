@@ -13,8 +13,8 @@ import { MatDatepicker, MatDatepickerModule, MatInputModule, MatNativeDateModule
 import { StoriesComponent } from './stories/stories.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TopmenuComponent } from './topmenu/topmenu.component';
-import { StoryService } from '../services/story.service';
-import { HttpService } from '../services/http.service';
+import { StoryService } from './services/story.service';
+import { HttpService } from './services/http.service';
 
 
 @NgModule({
