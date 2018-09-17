@@ -14,7 +14,7 @@ export class StoriesComponent implements OnInit {
 
   search: string;
   private _storis: any[];
-  constructor(private router: Router,
+  constructor(private authService: AuthService,
     private storyService: StoryService,
     private routingService: RoutingService) { }
 
