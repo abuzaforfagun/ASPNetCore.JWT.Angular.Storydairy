@@ -28,6 +28,10 @@ export class StoryFormComponent implements OnInit {
 
     if (this.storyId) {
       this.story = this.storyService.get(this.storyId);
+      if (!this.story) {
+        this.router.navigate(['page-not-found']);
+        return;
+      }
       if (this.story.userId !== this.authService.getUserId()) {
         this.router.navigate(['page-not-found']);
       }

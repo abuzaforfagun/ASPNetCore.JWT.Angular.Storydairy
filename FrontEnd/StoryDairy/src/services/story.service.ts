@@ -36,9 +36,9 @@ export class StoryService {
 
   get(id: number) {
     if (this.stories.length === 0) {
-      this.stories = this.getStories();
-      return  this.stories.find(s => s.id === id);
+      return undefined;
     } else {
+      // tslint:disable-next-line:radix
       id = parseInt(id.toString());
       return this.stories.find(s => s.id === id);
     }
