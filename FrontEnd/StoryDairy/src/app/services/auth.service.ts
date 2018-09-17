@@ -19,13 +19,14 @@ export class AuthService {
   login(user: User): Promise<any> {
     return new Promise((resolve) => {
       this.httpService.post('https://localhost:44399/api/Auth/login', user)
-      .subscribe(data => {
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('user', data.userId);
-        this.userId = data.userId;
-        this.isAuthenticate = true;
-        resolve(true);
-      }, err => resolve(false));
+        .subscribe(data => {
+          this.token = data.token;
+          localStorage.setItem('token', data.token);
+          localStorage.setItem('user', data.userId);
+          this.userId = data.userId;
+          this.isAuthenticate = true;
+          resolve(true);
+        }, err => resolve(false));
     });
   }
 
@@ -38,10 +39,19 @@ export class AuthService {
 
   checkAuthentication(): Promise<any> {
     return new Promise((resolve, reject) => {
-      if (localStorage.getItem('user') === null) {
+      if (this.token) {
+        resolve(this.token);
+      }
+      const tokenFromStorage = localStorage.getItem('user');
+      if (tokenFromStorage === null) {
         resolve(false);
       }
+      this.token = tokenFromStorage;
       resolve(true);
     });
+  }
+
+  clearAuthentication() {
+    localStorage.clear();
   }
 }

@@ -16,7 +16,7 @@ export class TopmenuComponent implements OnInit {
   }
 
   logOut() {
-    localStorage.clear();
+    this.authService.clearAuthentication();
     this.gotoLoginPage();
   }
 
