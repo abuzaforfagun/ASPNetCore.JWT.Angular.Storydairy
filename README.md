@@ -1,6 +1,6 @@
 # ASPNetCore.Angular.StoryDairy
 
-Very basic CRUD application with authentication, web api and modern front end technologies.
+CRUD application with authentication, web api and modern front end technologies.
 ## Technology stack
 #### Backend
 
